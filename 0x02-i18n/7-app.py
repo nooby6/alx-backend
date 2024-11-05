@@ -70,3 +70,25 @@ def get_locale():
         return locale
     if g.get('user') and g.user.get('locale') in app.config['LANGUAGES']:
         return g.user['locale']
+        @babel.timezoneselector
+        def get_timezone():
+            """
+            Determines the best matching timezone for the user, based on:
+            1. Timezone from URL parameters
+            2. Timezone from user settings
+            3. Default to UTC
+            """
+            timezone = request.args.get('timezone')
+            if timezone:
+                try:
+                    pytz.timezone(timezone)
+                    return timezone
+                except UnknownTimeZoneError:
+                    pass
+            if g.get('user') and g.user.get('timezone'):
+                try:
+                    pytz.timezone(g.user['timezone'])
+                    return g.user['timezone']
+                except UnknownTimeZoneError:
+                    pass
+            return app.config['BABEL_DEFAULT_TIMEZONE']
