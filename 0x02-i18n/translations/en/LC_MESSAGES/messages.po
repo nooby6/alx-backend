@@ -15,7 +15,6 @@ msgstr "You are logged in as %(username)s."
 msgid "not_logged_in"
 msgstr "You are not logged in."
 
-
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-05 17:01+0000\n"
